@@ -1,123 +1,163 @@
 // Assignment Code
-const generateBtn = document.querySelector("#generate");
+var generateBtn = document.querySelector("#generate");
+//List of number characters:
+const listofnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+//List of the letters capitalised:
+const upperCaseLetters = [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+];
+//List of letters nomrally:
+const lowerCaseLetters = [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
+];
+//List of special characters:
+const specialCharacters = [
+  "!",
+  "#",
+  "$",
+  "%",
+  "&",
+  "(",
+  ")",
+  "*",
+  "+",
+  ",",
+  "-",
+  ".",
+  "/",
+  ":",
+  ";",
+  "<",
+  "=",
+  ">",
+  "?",
+  "@",
+  "[",
+  "]",
+  "^",
+  "_",
+  "`",
+  "{",
+  "|",
+  "}",
+  "~",
+  " ' ",
+  " ",
+  ' " ',
+  "\\",
+];
 
-//User story:
-//User selects whether they want numbers or not:
-function CheckNumbers() {
-  if (
-    confirm("Would you like to include numbers in your new password?") == true
-  ) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-//User selects whether they want special characters or not:
-function CheckSpecialCharacters() {
-  if (
-    confirm(
-      "Would you like to include special characters such as !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~ in your new password?"
-    ) == true
-  ) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-//User selects whether they want lowercase letters  or not:
-function CheckLowercaseLetters() {
-  if (
-    confirm(
-      "Would you like to include lowercase letters in your new password?"
-    ) == true
-  ) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-//User selects whether they want uppercase or not:
-function CheckUppercaseLetters() {
-  if (
-    confirm(
-      "Would you like to include uppercase letters in your new password?"
-    ) == true
-  ) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-//Checks the user has selected atleast one option:
-function checksSomethingsBeenChosen() {}
-
-//Function below gathers the users desired criteria and confines it into a single string:
-function addUserCriteria() {
-  let addNumbers = CheckNumbers();
-  let UsersCharacters = "";
-  if (addNumbers === true) {
-    const passwordNumbers = "1234567890";
-    UsersCharacters = UsersCharacters.concat(passwordNumbers);
-  }
-  let addSpecialCharacters = CheckSpecialCharacters();
-  if (addSpecialCharacters === true) {
-    const passwordSpecialCharacters = " !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~";
-    // \ Escape characters to treat special characters as just string.
-    UsersCharacters = UsersCharacters.concat(passwordSpecialCharacters);
-  }
-  let addLowercaseLetters = CheckLowercaseLetters();
-  if (addLowercaseLetters === true) {
-    const passwordLowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
-    UsersCharacters = UsersCharacters.concat(passwordLowercaseLetters);
-  }
-  let addUppercaseLetters = CheckUppercaseLetters();
-  if (addUppercaseLetters === true) {
-    const passwordUppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    UsersCharacters = UsersCharacters.concat(passwordUppercaseLetters);
-  }
-  return UsersCharacters;
-}
-
-//User selects password length:
-function getPasswordLength() {
-  let userInput = prompt(
-    "Please choose a length between 8 and 128 characters",
-    "10"
-  );
-  if ((userInput) => 8 && userInput <= 128) {
-    return userInput;
-  } else {
-    alert("Due to an invalid unput we have set the value to 10.");
-    return 10;
-  }
-}
-
-// main function to generate the password
-// Generate new password with the users needs alongisder their desired length:
+// Prompts:
+//Password length
 function generatePassword() {
-  let UsersCharacters = addUserCriteria();
-  let NewPasswordLength = getPasswordLength;
-  let NeedsandLength = UsersCharacters.length;
+  let choices = [];
 
-  let password = "";
-  for (
-    let passwordlength = 0;
-    passwordlength < NewPasswordLength;
-    passwordlength++
-  ) {
-    let randomNumber = Math.random() * NeedsandLength;
-    let randomChoice = Math.floor(randomNumber);
-    let newCharacters = UsersCharacters.substring(
-      randomChoice,
-      randomChoice + 1
-    );
-    password = password.concat(newCharacters);
+  var passwordlength = prompt(
+    "Please choose a length between 8 and 128 characters"
+  );
+  if (passwordlength < 8 || passwordlength > 128) {
+    alert("Please enter a valid password length between 8 and 128");
+    generatePassword();
+  } else if (passwordlength === "" || isNaN(passwordlength)) {
+    alert("Please enter a valid password length between 8 and 128");
+    generatePassword();
   }
-  return password;
+
+  //Number criteria prompt
+  var numbersPrompt = confirm(
+    "Would you like to include numbers in your new password?"
+  );
+  //Uppercase criteria prompt
+  var upperCasePrompt = confirm(
+    "Would you like to include uppercase letters in your new password?"
+  );
+  //Lowercase criteria prompt
+  var lowerCasePrompt = confirm(
+    "Would you like to include lowercase letters in your new password?"
+  );
+  //Specialcharacters criteria prompt
+  var specialCharactersPrompt = confirm(
+    "Would you like to include special characters such as !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~ in your new password?"
+  );
+
+  if (numbersPrompt == true) {
+    choices = choices.concat(listofnumbers);
+  }
+  if (lowerCasePrompt == true) {
+    choices = choices.concat(lowerCaseLetters);
+  }
+  if (upperCasePrompt == true) {
+    choices = choices.concat(upperCaseLetters);
+  }
+  if (specialCharactersPrompt == true) {
+    choices = choices.concat(specialCharacters);
+  }
+  if (
+    lowerCasePrompt == false &&
+    upperCasePrompt == false &&
+    specialCharactersPrompt == false &&
+    numbersPrompt == false
+  ) {
+    alert("Please select atleast one option.");
+  }
+  console.log(choices);
+
+  var results = "";
+
+  for (let i = 0, n = choices.length; i < parseInt(passwordlength); i++) {
+    results += choices[Math.floor(Math.random() * n)];
+  }
+  return results;
 }
 
 // Write password to the #password input
