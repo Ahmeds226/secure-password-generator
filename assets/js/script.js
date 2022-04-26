@@ -105,21 +105,27 @@ function addUserCriteria() {
 
 // main function to generate the password
 // Generate new password with the users needs alongisder their desired length:
-function generatePassword = (){
+function generatePassword() {
   const UsersCharacters = addUserCriteria();
-  const NewPasswordLength = getPasswordLength
-  const NeedsandLength = UsersCharacters.length
+  const NewPasswordLength = getPasswordLength;
+  const NeedsandLength = UsersCharacters.length;
 
   const password = "";
-  for (const passwordlength = 0; passwordlength < NewPasswordLength; passwordlength++) {
+  for (
+    const passwordlength = 0;
+    passwordlength < NewPasswordLength;
+    passwordlength++
+  ) {
     const randomNumber = Math.random() * NeedsandLength;
     const randomChoice = Math.floor(randomNumber);
-    const newCharacters = UsersCharacters.substring(randomChoice, randomChoice + 1);
+    const newCharacters = UsersCharacters.substring(
+      randomChoice,
+      randomChoice + 1
+    );
     password = password.concat(newCharacters);
   }
   return password;
-
-};
+}
 
 // Write password to the #password input
 function writePassword() {
