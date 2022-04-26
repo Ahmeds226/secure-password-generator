@@ -2,20 +2,6 @@
 const generateBtn = document.querySelector("#generate");
 
 //User story:
-//User selects password length:
-function getPasswordLength() {
-  const userInput = prompt(
-    "Please choose a length between 8 and 128 characters",
-    "10"
-  );
-  if ((userInput) => 8 && userInput <= 128) {
-    return userInput;
-  } else {
-    alert("Due to an invalid unput we have set the value to 10.");
-    return 10;
-  }
-}
-
 //User selects whether they want numbers or not:
 function CheckNumbers() {
   if (
@@ -103,6 +89,20 @@ function addUserCriteria() {
   return UsersCharacters;
 }
 
+//User selects password length:
+function getPasswordLength() {
+  const userInput = prompt(
+    "Please choose a length between 8 and 128 characters",
+    "10"
+  );
+  if ((userInput) => 8 && userInput <= 128) {
+    return userInput;
+  } else {
+    alert("Due to an invalid unput we have set the value to 10.");
+    return 10;
+  }
+}
+
 // main function to generate the password
 // Generate new password with the users needs alongisder their desired length:
 function generatePassword() {
@@ -129,8 +129,8 @@ function generatePassword() {
 
 // Write password to the #password input
 function writePassword() {
-  const password = generatePassword();
-  const passwordText = document.querySelector("#password");
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 }
