@@ -60,7 +60,7 @@ const lowerCaseLetters = [
   "y",
   "z",
 ];
-//List of special characters:
+//List of special charact
 const specialCharacters = [
   "!",
   "#",
