@@ -53,35 +53,28 @@ function CheckUppercaseLetters() {
 }
 
 //Checks the user has selected atleast one option:
-if (
-  CheckNumbers == false &&
-  CheckSpecialCharacters == false &&
-  CheckLowercaseLetters == false &&
-  CheckUppercaseLetters == false
-) {
-  alert("You must inculde one type of data to include in your password.");
-}
+function checksSomethingsBeenChosen() {}
 
 //Function below gathers the users desired criteria and confines it into a single string:
 function addUserCriteria() {
-  const addNumbers = CheckNumbers();
-  const UsersCharacters = "";
+  let addNumbers = CheckNumbers();
+  let UsersCharacters = "";
   if (addNumbers === true) {
     const passwordNumbers = "1234567890";
     UsersCharacters = UsersCharacters.concat(passwordNumbers);
   }
-  const addSpecialCharacters = CheckSpecialCharacters();
+  let addSpecialCharacters = CheckSpecialCharacters();
   if (addSpecialCharacters === true) {
     const passwordSpecialCharacters = " !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~";
     // \ Escape characters to treat special characters as just string.
     UsersCharacters = UsersCharacters.concat(passwordSpecialCharacters);
   }
-  const addLowercaseLetters = CheckLowercaseLetters();
+  let addLowercaseLetters = CheckLowercaseLetters();
   if (addLowercaseLetters === true) {
     const passwordLowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
     UsersCharacters = UsersCharacters.concat(passwordLowercaseLetters);
   }
-  const addUppercaseLetters = CheckUppercaseLetters();
+  let addUppercaseLetters = CheckUppercaseLetters();
   if (addUppercaseLetters === true) {
     const passwordUppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     UsersCharacters = UsersCharacters.concat(passwordUppercaseLetters);
@@ -91,7 +84,7 @@ function addUserCriteria() {
 
 //User selects password length:
 function getPasswordLength() {
-  const userInput = prompt(
+  let userInput = prompt(
     "Please choose a length between 8 and 128 characters",
     "10"
   );
@@ -106,19 +99,19 @@ function getPasswordLength() {
 // main function to generate the password
 // Generate new password with the users needs alongisder their desired length:
 function generatePassword() {
-  const UsersCharacters = addUserCriteria();
-  const NewPasswordLength = getPasswordLength;
-  const NeedsandLength = UsersCharacters.length;
+  let UsersCharacters = addUserCriteria();
+  let NewPasswordLength = getPasswordLength;
+  let NeedsandLength = UsersCharacters.length;
 
-  const password = "";
+  let password = "";
   for (
-    const passwordlength = 0;
+    let passwordlength = 0;
     passwordlength < NewPasswordLength;
     passwordlength++
   ) {
-    const randomNumber = Math.random() * NeedsandLength;
-    const randomChoice = Math.floor(randomNumber);
-    const newCharacters = UsersCharacters.substring(
+    let randomNumber = Math.random() * NeedsandLength;
+    let randomChoice = Math.floor(randomNumber);
+    let newCharacters = UsersCharacters.substring(
       randomChoice,
       randomChoice + 1
     );
